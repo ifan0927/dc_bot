@@ -15,7 +15,7 @@ def generate_card():
 
 def gpt_answer(promt):
     client = OpenAI(
-        api_key="gpt_api_key"
+        api_key=gpt_api_key
     )
     completion = client.chat.completions.create(
     messages=[
@@ -50,11 +50,13 @@ class gpt(commands.Cog):
         question = "詢問:"+ quote + "，使用塔羅牌解釋抽到:" + generate_card()
         await interaction.response.defer()
         answer = gpt_answer(question)
-        await interaction.followup.send(answer)
+        await interaction.followup.send(f"根據你的問題:{quote}，以下是我的回答是:\n{answer}")
 
-    @app_commands.command(name = "測試", description = "測試用")
-    async def test(interaction: discord.Interaction, quote:str):
-        await interaction.response.send_message(quote)
+    @app_commands.command(name = "老鼠聊天", description = "輸入範例:你是誰?")
+    async def chat(sef, interaction: discord.Interaction, quote:str):
+        await interaction.response.defer()
+        answer = gpt_answer(quote)
+        await interaction.followup.send(f"根據你的問題:{quote}，以下是我的回答是:\n{answer}")
 
 
     

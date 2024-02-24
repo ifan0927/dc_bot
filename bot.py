@@ -41,7 +41,7 @@ async def load_extensions():
 async def main():
     async with bot:
         await load_extensions()
-        await bot.start("dc_api_key")
+        await bot.start(dc_api_key)
 
 # 確定執行此py檔才會執行
 if __name__ == "__main__":
