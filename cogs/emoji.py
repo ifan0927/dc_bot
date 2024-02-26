@@ -36,9 +36,12 @@ class emoji(commands.Cog):
             try:
                 with open('emoji.png', 'rb') as f:
                     data = f.read()
-                    await interaction.guild.create_custom_emoji(name=emoji_name, image=data)
+                    status = await interaction.guild.create_custom_emoji(name=emoji_name, image=data)
+                    if emoji_id[0] == 0 :
+                        status = "表情新增成功:" "<a:" + emoji_name + ":" + str(status.id) + ">"
+                    else:
+                        status = "表情新增成功:" "<:" + emoji_name + ":" + str(status.id) + ">"
                 #.guild.create_custom_emoji("test", "emoji.png",)
-                status = "表情新增成功"
             except Exception as e:
                 status = f"新增失敗、error:{e}" 
             
