@@ -5,6 +5,8 @@ from discord.ext import commands
 from discord import app_commands
 import random
 
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix = "$", intents = intents)
 gpt_api_key = os.environ['Gpt_API']
 
 def generate_card():
@@ -40,8 +42,6 @@ class gpt(commands.Cog):
     async def on_message(self, message: discord.Message):
         if message.author == self.bot.user:
             return
-        if message.content == "給我一張塔羅牌":
-            await message.channel.send(generate_card)
         
     # name指令顯示名稱，description指令顯示敘述
     # name的名稱，中、英文皆可，但不能使用大寫英文

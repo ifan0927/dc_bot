@@ -6,18 +6,13 @@ class Main(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    # 前綴指令
-    @commands.command()
-    async def Hello(self, ctx: commands.Context):
-        await ctx.send("Hello, world!")
-
     # 關鍵字觸發
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if message.author == self.bot.user:
             return
-        if message.content == "Hello":
-            await message.channel.send("Hello, world!")
+        if "py"  in message.content.lower() :
+            await message.channel.send("<a:ezgif:1207301388732727326>")
 
 # Cog 載入 Bot 中
 async def setup(bot: commands.Bot):
